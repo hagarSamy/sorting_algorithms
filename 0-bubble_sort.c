@@ -1,36 +1,35 @@
 #include "sort.h"
-
+#include "stdbool.h"
 /**
- * bubble_sort - func using bubble sort algo to sort array
- *
- * @array: array integers
- * @size: size of array.
+ * bubble_sort - sorts an array
+ * @array: a ponter to the array to sort
+ * @size: the size of the array
+ * Return: nothing
 */
+
 void bubble_sort(int *array, size_t size)
 {
-	size_t x = 0, y;
-	int sp;
+	size_t i, k;
+	int temp;
+	bool swapped;
 
-	if (!size || !array)
-	{
+	if (!array || size <= 1)
 		return;
-	}
-
-	while (x < size)
+	for (k = 0; k < size - 1; k++)
 	{
-		for (y = 0; y < size - 1; y++)
+		swapped = false;
+		for (i = 0; i < size - k - 1; i++)
 		{
-			if (array[y] > array[y + 1])
+			if (array[i] > array[i + 1])
 			{
-				sp = array[y];
-				array[y] = array[y + 1];
-				array[y + 1] = sp;
-
+				temp = array[i];
+				array[i] = array[i + 1];
+				array[i + 1] = temp;
 				print_array(array, size);
+				swapped = true;
 			}
 		}
-
-		x++;
+		if (swapped == false)
+			break;
 	}
-
 }
